@@ -1,0 +1,46 @@
+# SecureCorp Demo Commands
+
+Save this file so you can easily reference or copy-paste these commands during your presentation.
+
+## Step 1: Start the Environment
+Open PowerShell in this project folder (`c:\Users\ihadj\Desktop\SecureCorp`) and run:
+`docker-compose up -d --build`
+
+Wait about 5 seconds for the 4 microservices to spin up.
+
+## Step 2: The Fully Automated Demonstration (Recommended)
+This runs the script I created for you. It perfectly simulates two different user flows (one successful authorization, and one blocked by Cross-Department ABAC restrictions) and prints exactly what happens at every stage.
+`node test_api.js`
+
+## Step 3: Stop the Environment (After Demo)
+When you've finished presenting, cleanly shut down all services.
+`docker-compose down`
+
+---
+command to login as Kimiko (Finance Employee) and get a ticket:
+
+Get Ticket:
+  $loginRes = curl -s -X POST http://localhost:3000/login -H "Content-Type: application/json" -d '{\"username\":\"Kimiko\",\"password\":\"password123\"}'
+  $tgt = ($loginRes | ConvertFrom-Json).tgt
+
+Alternative Login Cases (Switch 'Kimiko' above to the following usernames to test different scenarios):
+- "Mohamed" - Employee, HR, Public Clearance (Will fail Cross-Department checks in Finance)
+- "MM" - Manager, HR, Confidential (Can Read & Write in HR, will fail Finance access)
+- "eve" - Admin, IT, Secret Clearance (Full RBAC privileges, highest clearance)
+- "William" - Employee, HR, Public, Location: External (Will be blocked by Zero Trust location rules)
+
+Access Service:
+  $stRes = curl -s -X POST http://localhost:3000/request-ticket -H "Authorization: Bearer $tgt" -H "Content-Type: application/json" -d '{\"service\":\"finance\"}'
+  $st = ($stRes | ConvertFrom-Json).serviceTicket
+
+Read Resource:
+  curl -s -X GET http://localhost:3003/resource/1 -H "Authorization: Bearer $st"
+
+---
+## Impress the Teacher: Create a Custom User on the Spot!
+If the teacher asks to create a custom user (e.g., your name, with a specific department and clearance):
+
+Signup New User:
+  curl -s -X POST http://localhost:3000/signup -H "Content-Type: application/json" -d '{\"username\":\"YourNameHere\",\"password\":\"password123\",\"role\":\"Manager\",\"department\":\"finance\",\"clearance\":\"secret\",\"location\":\"internal\"}'
+
+You can then use the usual Get Ticket -> Access Service commands above with \"YourNameHere\" to prove they were added dynamically to the system!

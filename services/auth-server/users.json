@@ -1,0 +1,58 @@
+[
+  {
+    "username": "Mohamed",
+    "passwordHash": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+    "role": "Employee",
+    "department": "hr",
+    "clearance": "public",
+    "location": "internal"
+  },
+  {
+    "username": "MM",
+    "passwordHash": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+    "role": "Manager",
+    "department": "hr",
+    "clearance": "confidential",
+    "location": "internal"
+  },
+  {
+    "username": "Kimiko",
+    "passwordHash": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+    "role": "Employee",
+    "department": "finance",
+    "clearance": "public",
+    "location": "internal"
+  },
+  {
+    "username": "eve",
+    "passwordHash": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+    "role": "Admin",
+    "department": "it",
+    "clearance": "secret",
+    "location": "internal"
+  },
+  {
+    "username": "William",
+    "passwordHash": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+    "role": "Employee",
+    "department": "hr",
+    "clearance": "public",
+    "location": "external"
+  },
+  {
+    "username": "islem_2",
+    "passwordHash": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+    "role": "Employee",
+    "department": "finance",
+    "clearance": "secret",
+    "location": "internal"
+  },
+  {
+    "username": "islemmmmm",
+    "passwordHash": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+    "role": "Employee",
+    "department": "finance",
+    "clearance": "secret",
+    "location": "internal"
+  }
+]

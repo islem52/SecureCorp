@@ -1,0 +1,5 @@
+[
+  { "id": "1", "name": "Company Handbook", "classification": "public", "department": "hr", "data": "Welcome to the firm..." },
+  { "id": "2", "name": "Employee Salary Info", "classification": "confidential", "department": "hr", "data": "Average salary is..." },
+  { "id": "3", "name": "Upcoming Layoffs List", "classification": "secret", "department": "hr", "data": "Classified plan..." }
+]

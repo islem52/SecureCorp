@@ -1,0 +1,5 @@
+[
+  { "id": "1", "name": "Q3 Public Earnings", "classification": "public", "department": "finance", "data": "Q3 earnings were solid..." },
+  { "id": "2", "name": "Internal Budget Draft", "classification": "confidential", "department": "finance", "data": "We have $1M left..." },
+  { "id": "3", "name": "Merger & Acquisition Plan", "classification": "secret", "department": "finance", "data": "Buying out the competitor..." }
+]

@@ -1,0 +1,44 @@
+{
+  "rbac": [
+    {
+      "role": "Admin",
+      "allowed_actions": ["read", "write", "delete"]
+    },
+    {
+      "role": "Manager",
+      "allowed_actions": ["read", "write"]
+    },
+    {
+      "role": "Employee",
+      "allowed_actions": ["read"]
+    }
+  ],
+  "abac_restrictions": [
+    {
+      "description": "ABAC: Access denied outside corporate network",
+      "condition": {
+        "user.location": "external"
+      }
+    },
+    {
+      "description": "ABAC: Cross-department access strictly prohibited",
+      "condition": {
+        "user.department": { "$not_equals": "resource.department" }
+      }
+    },
+    {
+      "description": "ABAC: User clearance too low for secret resource",
+      "condition": {
+        "resource.classification": "secret",
+        "user.clearance": { "$not_equals": "secret" }
+      }
+    },
+    {
+      "description": "ABAC: User clearance too low for confidential resource",
+      "condition": {
+        "resource.classification": "confidential",
+        "user.clearance": { "$in": ["public"] }
+      }
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+version: '3.8'
+services:
+  auth-server:
+    build: ./services/auth-server
+    ports:
+      - "3000:3000"
+    environment:
+      - JWT_SECRET=super_secret_kdc_key
+      - PORT=3000
+    volumes:
+      - ./services/auth-server/users.json:/app/users.json
+    networks:
+      - securecorp-net
+
+  pdp:
+    build: ./services/pdp
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+    networks:
+      - securecorp-net
+
+  hr-service:
+    build: ./services/hr-service
+    ports:
+      - "3002:3002"
+    environment:
+      - PORT=3002
+      - JWT_SECRET=super_secret_kdc_key
+      - PDP_URL=http://pdp:3001/evaluate
+      - SERVICE_NAME=hr
+    networks:
+      - securecorp-net
+    depends_on:
+      - pdp
+
+  finance-service:
+    build: ./services/finance-service
+    ports:
+      - "3003:3003"
+    environment:
+      - PORT=3003
+      - JWT_SECRET=super_secret_kdc_key
+      - PDP_URL=http://pdp:3001/evaluate
+      - SERVICE_NAME=finance
+    networks:
+      - securecorp-net
+    depends_on:
+      - pdp
+
+networks:
+  securecorp-net:
+    driver: bridge
