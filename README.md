@@ -1,4 +1,4 @@
-# 🔐 SecureCorp — Distributed Security Architecture
+# SecureCorp — Distributed Security Architecture
 
 A secure distributed microservices system implementing **Kerberos-inspired authentication**, **RBAC**, **ABAC**, and a **Zero Trust** security model.
 
@@ -6,7 +6,7 @@ Built with Node.js, Express, and Docker Compose.
 
 ---
 
-## 🏗️ Architecture
+##  Architecture
 
 ```
 Client
@@ -30,7 +30,7 @@ Client
 
 ---
 
-## 🚀 Quick Start
+## How to use :
 
 **Prerequisites:** Docker Desktop must be running.
 
@@ -48,7 +48,7 @@ node test_api.js
 
 ---
 
-## 🔑 Authentication Flow (Kerberos-Inspired)
+## Authentication Flow (Kerberos-Based)
 
 1. **Login → TGT**: Client sends credentials to the KDC (`POST /login`). The KDC verifies the SHA-256 hashed password and issues a JWT **Ticket Granting Ticket**.
 2. **TGT → Service Ticket**: Client sends the TGT to request access to a specific service (`POST /request-ticket`). The KDC issues an **AES-256 encrypted** Service Ticket locked to the destination service.
@@ -56,7 +56,7 @@ node test_api.js
 
 ---
 
-## 🛡️ Authorization Model
+##  Authorization Model
 
 ### RBAC (Role-Based)
 | Role | Permissions |
@@ -73,7 +73,7 @@ Policies are externally defined in `services/pdp/policies.json`:
 
 ---
 
-## 👤 Test Users
+##  Test Users
 
 | Username | Role | Department | Clearance | Location |
 |---|---|---|---|---|
@@ -87,7 +87,7 @@ Policies are externally defined in `services/pdp/policies.json`:
 
 ---
 
-## 🧪 API Endpoints
+##  API Endpoints
 
 ### Auth Server (`:3000`)
 | Method | Endpoint | Description |
@@ -105,9 +105,9 @@ Policies are externally defined in `services/pdp/policies.json`:
 
 ---
 
-## ⚔️ Attack Demonstrations
+##  Attack Demonstrations
 
-| Attack | How it's Mitigated |
+| Attack | Mitigation |
 |---|---|
 | **Ticket Tampering** | JWT cryptographic signature validation rejects any modified token |
 | **Privilege Escalation** | RBAC engine blocks actions not permitted for the user's role |
@@ -117,7 +117,7 @@ Policies are externally defined in `services/pdp/policies.json`:
 
 ---
 
-## 🐳 Docker
+##  Docker
 
 All services are containerized and networked in an isolated `securecorp-net` bridge network.
 
